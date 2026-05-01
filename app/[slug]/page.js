@@ -1,5 +1,7 @@
-import { getPostBySlug, getPosts } from '@/lib/api';
+import { getPostBySlug } from '@/lib/api';
 import { notFound } from 'next/navigation';
+
+export const dynamic = 'force-dynamic';
 
 function extractHeadings(html) {
   const sections = [];
@@ -34,7 +36,6 @@ export default async function ArticlePage({ params }) {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="flex gap-8 items-start">
-        {/* Sidebar */}
         <aside className="hidden lg:block w-60 flex-shrink-0">
           <div className="sticky top-24 bg-white rounded-2xl p-5 shadow-sm border border-peach max-h-[80vh] overflow-y-auto">
             {sections.length > 0 && (
@@ -69,7 +70,6 @@ export default async function ArticlePage({ params }) {
           </div>
         </aside>
 
-        {/* Article */}
         <article className="flex-1 min-w-0">
           {category && <span className="text-xs font-semibold text-teal uppercase tracking-wide">{category.name}</span>}
           <h1 className="font-bold text-navy text-3xl md:text-4xl mt-2 mb-2 leading-tight" style={{fontFamily:'Nunito,sans-serif'}}>
@@ -86,9 +86,4 @@ export default async function ArticlePage({ params }) {
       </div>
     </div>
   );
-}
-
-export async function generateStaticParams() {
-  const { posts } = await getPosts({ perPage: 100 });
-  return posts.map(post => ({ slug: post.slug }));
 }
