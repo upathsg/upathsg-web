@@ -116,7 +116,7 @@ export default async function HomePage() {
       </section>
 
       {/* Stats */}
-      <section className="bg-navy py-12">
+      <section className="bg-teal py-12">
         <div className="max-w-4xl mx-auto px-4 grid grid-cols-3 gap-8 text-center text-white">
           <div>
             <p className="font-bold text-4xl text-pink" style={{fontFamily:'Nunito,sans-serif'}}>{articleCount}</p>
