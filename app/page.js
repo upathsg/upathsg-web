@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import ArticleCard from '@/components/ArticleCard';
 import { getLatestPosts, getPostCount } from '@/lib/api';
