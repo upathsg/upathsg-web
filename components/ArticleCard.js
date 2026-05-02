@@ -1,8 +1,23 @@
 import Link from 'next/link';
 
+function decodeHtml(html) {
+  return html
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8216;/g, "'")
+    .replace(/&#8220;/g, '"')
+    .replace(/&#8221;/g, '"')
+    .replace(/&#8230;/g, '...')
+    .replace(/&nbsp;/g, ' ');
+}
+
 export default function ArticleCard({ post }) {
   const category = post._embedded?.['wp:term']?.[0]?.[0];
-  const excerpt = post.excerpt?.rendered?.replace(/<[^>]+>/g, '').slice(0, 120) + '...';
+  const rawExcerpt = post.excerpt?.rendered?.replace(/<[^>]+>/g, '') || '';
+  const excerpt = decodeHtml(rawExcerpt).trim().slice(0, 120) + '...';
   const date = new Date(post.date).toLocaleDateString('en-SG', { year: 'numeric', month: 'long' });
 
   return (
