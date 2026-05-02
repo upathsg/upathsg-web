@@ -26,7 +26,7 @@ export default function ArticleCard({ post }) {
         {category && <span className="text-xs font-semibold text-teal uppercase tracking-wide">{category.name}</span>}
         <h3 className="font-bold text-navy text-base mt-2 group-hover:text-teal transition-colors leading-snug flex-1">
   {decodeHtml(post.title?.rendered || '')}
-</h3>
+       </h3>
         <p className="text-sm text-gray-500 mt-2 leading-relaxed">{excerpt}</p>
         <div className="mt-4 flex items-center justify-between">
           <span className="text-xs text-gray-400">{date}</span>
