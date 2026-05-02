@@ -16,8 +16,9 @@ const UNIVERSITIES = {
 
 async function getPostsByUniversity(uniName) {
   const res = await fetch(
-    `${WP_API}/posts?per_page=100&_fields=id,title,slug,excerpt,date,categories&_embed=wp:term`
-  );
+  `${WP_API}/posts?per_page=100&_fields=id,title,slug,excerpt,date,categories&_embed=wp:term`,
+  { cache: 'no-store' }
+);
   if (!res.ok) return [];
   const all = await res.json();
   return all.filter(post => 
