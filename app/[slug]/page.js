@@ -3,32 +3,51 @@ import { notFound } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
 
+function slugify(text) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
 function extractHeadings(html) {
   const sections = [];
-  const h2Regex = /<h2[^>]*id="([^"]*)"[^>]*>(.*?)<\/h2>/gi;
+  const h2Regex = /<h2[^>]*>(.*?)<\/h2>/gi;
   let match;
   while ((match = h2Regex.exec(html)) !== null) {
-    const id = match[1];
-    const text = match[2].replace(/<[^>]+>/g, '');
+    const text = match[1].replace(/<[^>]+>/g, '');
+    const id = slugify(text);
     const questions = [];
     const afterH2 = html.slice(match.index + match[0].length);
     const nextH2 = afterH2.search(/<h2/i);
     const sectionHtml = nextH2 > -1 ? afterH2.slice(0, nextH2) : afterH2;
-    const h3Re = /<h3[^>]*id="([^"]*)"[^>]*>(.*?)<\/h3>/gi;
+    const h3Re = /<h3[^>]*>(.*?)<\/h3>/gi;
     let h3Match;
     while ((h3Match = h3Re.exec(sectionHtml)) !== null) {
-      questions.push({ id: h3Match[1], text: h3Match[2].replace(/<[^>]+>/g, '') });
+      const qText = h3Match[1].replace(/<[^>]+>/g, '');
+      questions.push({ id: slugify(qText), text: qText });
     }
     sections.push({ id, text, questions });
   }
   return sections;
 }
 
+function injectHeadingIds(html) {
+  return html
+    .replace(/<h2([^>]*)>(.*?)<\/h2>/gi, (match, attrs, text) => {
+      const cleanText = text.replace(/<[^>]+>/g, '');
+      const id = slugify(cleanText);
+      return `<h2${attrs} id="${id}">${text}</h2>`;
+    })
+    .replace(/<h3([^>]*)>(.*?)<\/h3>/gi, (match, attrs, text) => {
+      const cleanText = text.replace(/<[^>]+>/g, '');
+      const id = slugify(cleanText);
+      return `<h3${attrs} id="${id}">${text}</h3>`;
+    });
+}
+
 export default async function ArticlePage({ params }) {
   const post = await getPostBySlug(params.slug);
   if (!post) notFound();
 
-  const content = post.content?.rendered || '';
+  const content = injectHeadingIds(post.content?.rendered || '');
   const sections = extractHeadings(content);
   const category = post._embedded?.['wp:term']?.[0]?.[0];
   const date = new Date(post.date).toLocaleDateString('en-SG', { year: 'numeric', month: 'long', day: 'numeric' });
