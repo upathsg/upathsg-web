@@ -39,8 +39,8 @@ export default function AboutPage() {
       <section className="bg-teal py-12">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <p className="text-white text-lg md:text-xl font-semibold leading-relaxed" style={{fontFamily:'Nunito,sans-serif'}}>
-            Our purpose: make information on <span className="text-pink">all</span> Singapore universities and courses more accessible — so that juniors can make <span className="text-pink">better informed decisions.</span>
-          </p>
+  Our purpose: make information on <span style={{color:'#c45c6a'}}>ALL Singapore universities and courses</span> more accessible — so that juniors can make <span style={{color:'#c45c6a'}}>better informed</span> decisions.
+         </p>
         </div>
       </section>
 
