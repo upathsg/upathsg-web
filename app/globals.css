@@ -4,8 +4,8 @@
 
 body {
   font-family: 'Lato', sans-serif;
-  background-color: #fdf4ee;
-  color: #173f5f;
+  background-color: #F0E6CD;
+  color: #0F1932;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -16,18 +16,18 @@ h1, h2, h3, h4, h5, h6 {
 .article-content h2 {
   font-family: 'Nunito', sans-serif;
   font-weight: 800;
-  color: #173f5f;
+  color: #0F1932;
   font-size: 1.4rem;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #fae8d8;
+  border-bottom: 2px solid #F5E6D7;
 }
 
 .article-content h3 {
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
-  color: #00798c;
+  color: #50A08C;
   font-size: 1.05rem;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5, h6 {
 .article-content h4 {
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
-  color: #173f5f;
+  color: #0F1932;
   font-size: 1rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
@@ -49,11 +49,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .article-content strong {
-  color: #173f5f;
+  color: #0F1932;
   font-weight: 700;
 }
 
 .article-content a {
-  color: #00798c;
+  color: #50A08C;
   text-decoration: underline;
 }
