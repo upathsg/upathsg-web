@@ -26,91 +26,126 @@ export default async function HomePage() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative overflow-hidden" style={{ minHeight: '560px' }}>
+      <section className="relative overflow-hidden" style={{ minHeight: '640px' }}>
+
+        {/* SVG Background — full bleed */}
         <div className="absolute inset-0 w-full h-full">
-          <svg viewBox="0 0 1440 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
+          <svg viewBox="0 0 1440 640" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
             <defs>
               <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#fae8d8" />
-                <stop offset="60%" stopColor="#fdf4ee" />
-                <stop offset="100%" stopColor="#fff8f3" />
+                <stop offset="70%" stopColor="#fdf4ee" />
+                <stop offset="100%" stopColor="#fef8f4" />
               </linearGradient>
-              <radialGradient id="horizonGlow" cx="50%" cy="42%" r="25%">
-                <stop offset="0%" stopColor="#ffe8c0" stopOpacity="0.9" />
-                <stop offset="50%" stopColor="#ffd4a0" stopOpacity="0.4" />
+              <radialGradient id="sunGlow" cx="50%" cy="0%" r="60%">
+                <stop offset="0%" stopColor="#ffe0a0" stopOpacity="0.6" />
                 <stop offset="100%" stopColor="#fae8d8" stopOpacity="0" />
               </radialGradient>
+              <linearGradient id="hill1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#a8c48a" />
+                <stop offset="100%" stopColor="#8aad6e" />
+              </linearGradient>
+              <linearGradient id="hill2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#c2d9a8" />
+                <stop offset="100%" stopColor="#a8c48a" />
+              </linearGradient>
+              <linearGradient id="hill3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#d4e8be" />
+                <stop offset="100%" stopColor="#c2d9a8" />
+              </linearGradient>
               <linearGradient id="roadGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#c8bfb5" />
-                <stop offset="100%" stopColor="#b0a89e" />
+                <stop offset="0%" stopColor="#c0b8b0" />
+                <stop offset="100%" stopColor="#a8a098" />
               </linearGradient>
-              <linearGradient id="groundLeft" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#c8d9b0" />
-                <stop offset="100%" stopColor="#d4e0bc" />
-              </linearGradient>
-              <linearGradient id="groundRight" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#d4e0bc" />
-                <stop offset="100%" stopColor="#c8d9b0" />
-              </linearGradient>
-              <radialGradient id="textOverlay" cx="50%" cy="45%" r="40%">
-                <stop offset="0%" stopColor="#fdf4ee" stopOpacity="0.75" />
-                <stop offset="100%" stopColor="#fdf4ee" stopOpacity="0" />
-              </radialGradient>
             </defs>
 
-            <rect width="1440" height="560" fill="url(#skyGrad)" />
-            <ellipse cx="720" cy="235" rx="200" ry="80" fill="url(#horizonGlow)" />
-            <circle cx="720" cy="210" r="28" fill="#FFD166" opacity="0.85" />
-            <circle cx="720" cy="210" r="20" fill="#FFE08A" opacity="0.9" />
+            {/* Sky */}
+            <rect width="1440" height="640" fill="url(#skyGrad)" />
+            <rect width="1440" height="640" fill="url(#sunGlow)" />
 
+            {/* Sun */}
+            <circle cx="720" cy="310" r="36" fill="#FFD166" opacity="0.9" />
+            <circle cx="720" cy="310" r="24" fill="#FFE8A0" opacity="1" />
             {sunRayAngles.map((angle, i) => {
               const rad = (angle * Math.PI) / 180;
-              const x1 = 720 + Math.cos(rad) * 32;
-              const y1 = 210 + Math.sin(rad) * 32;
-              const x2 = 720 + Math.cos(rad) * 48;
-              const y2 = 210 + Math.sin(rad) * 48;
-              return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#FFD166" strokeWidth="2" opacity="0.5" />;
+              const x1 = 720 + Math.cos(rad) * 40;
+              const y1 = 310 + Math.sin(rad) * 40;
+              const x2 = 720 + Math.cos(rad) * 60;
+              const y2 = 310 + Math.sin(rad) * 60;
+              return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#FFD166" strokeWidth="2.5" opacity="0.55" />;
             })}
 
-            <path d="M0 300 Q180 220 360 280 Q500 330 580 310 L580 560 L0 560 Z" fill="url(#groundLeft)" opacity="0.7" />
-            <path d="M0 340 Q150 290 300 320 Q420 345 580 330 L580 560 L0 560 Z" fill="#b8cca0" opacity="0.5" />
-            <path d="M1440 300 Q1260 220 1080 280 Q940 330 860 310 L860 560 L1440 560 Z" fill="url(#groundRight)" opacity="0.7" />
-            <path d="M1440 340 Q1290 290 1140 320 Q1020 345 860 330 L860 560 L1440 560 Z" fill="#b8cca0" opacity="0.5" />
+            {/* Horizon line */}
+            <line x1="0" y1="348" x2="1440" y2="348" stroke="#d4bfaa" strokeWidth="1" opacity="0.3" />
 
-            <path d="M580 560 L680 235 L760 235 L860 560 Z" fill="url(#roadGrad)" />
-            <path d="M580 560 L680 235" stroke="#e8e0d8" strokeWidth="2" opacity="0.8" />
-            <path d="M860 560 L760 235" stroke="#e8e0d8" strokeWidth="2" opacity="0.8" />
+            {/* Back hills (lightest) */}
+            <path d="M0 348 Q200 290 400 330 Q600 365 720 340 Q840 315 1040 335 Q1240 355 1440 320 L1440 640 L0 640 Z" fill="url(#hill3)" />
 
-            <line x1="718" y1="245" x2="722" y2="265" stroke="white" strokeWidth="2.5" opacity="0.7" strokeLinecap="round" />
-            <line x1="714" y1="285" x2="726" y2="320" stroke="white" strokeWidth="3" opacity="0.7" strokeLinecap="round" />
-            <line x1="708" y1="340" x2="732" y2="390" stroke="white" strokeWidth="4" opacity="0.7" strokeLinecap="round" />
-            <line x1="698" y1="415" x2="742" y2="480" stroke="white" strokeWidth="5" opacity="0.7" strokeLinecap="round" />
-            <line x1="686" y1="500" x2="754" y2="545" stroke="white" strokeWidth="6" opacity="0.6" strokeLinecap="round" />
+            {/* Mid hills */}
+            <path d="M0 390 Q180 340 360 375 Q540 410 720 380 Q900 350 1080 378 Q1260 406 1440 370 L1440 640 L0 640 Z" fill="url(#hill2)" />
 
-            <circle cx="646" cy="360" r="7" fill="#D79B98" opacity="0.9" />
-            <text x="628" y="348" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.7" fontFamily="Nunito,sans-serif">JC / Poly</text>
-            <circle cx="623" cy="450" r="7" fill="#D79B98" opacity="0.9" />
-            <text x="600" y="438" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.7" fontFamily="Nunito,sans-serif">Research</text>
-            <circle cx="794" cy="360" r="7" fill="#50A08C" opacity="0.9" />
-            <text x="818" y="348" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.7" fontFamily="Nunito,sans-serif">Decision</text>
-            <circle cx="817" cy="450" r="7" fill="#50A08C" opacity="0.9" />
-            <text x="844" y="438" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.7" fontFamily="Nunito,sans-serif">Uni Life</text>
+            {/* Front hills */}
+            <path d="M0 450 Q150 420 300 440 Q500 465 580 448 L580 640 L0 640 Z" fill="url(#hill1)" />
+            <path d="M860 448 Q940 432 1100 452 Q1280 472 1440 440 L1440 640 L860 640 Z" fill="url(#hill1)" />
 
-            <line x1="0" y1="235" x2="1440" y2="235" stroke="#d4bfaa" strokeWidth="1" opacity="0.4" />
-            <rect width="1440" height="560" fill="url(#textOverlay)" />
+            {/* Road — winding from bottom-center toward horizon */}
+            {/* Road shape: wide at bottom, narrows and curves to vanishing point at sun */}
+            <path d="M580 640 C 600 560, 650 480, 700 348 L740 348 C 790 480, 840 560, 860 640 Z" fill="url(#roadGrad)" />
+
+            {/* Road kerb lines */}
+            <path d="M580 640 C 600 560, 650 480, 700 348" stroke="#d8d0c8" strokeWidth="2" fill="none" opacity="0.7" />
+            <path d="M860 640 C 840 560, 790 480, 740 348" stroke="#d8d0c8" strokeWidth="2" fill="none" opacity="0.7" />
+
+            {/* Road centre dashes */}
+            <path d="M716 355 C 716 370, 716 385, 716 400" stroke="white" strokeWidth="3" strokeDasharray="8,10" fill="none" opacity="0.7" strokeLinecap="round" />
+            <path d="M716 415 C 715 445, 714 475, 712 510" stroke="white" strokeWidth="4" strokeDasharray="10,12" fill="none" opacity="0.6" strokeLinecap="round" />
+            <path d="M710 530 C 708 560, 706 590, 703 620" stroke="white" strokeWidth="5" strokeDasharray="12,14" fill="none" opacity="0.5" strokeLinecap="round" />
+
+            {/* Trees — left side */}
+            <rect x="530" y="408" width="8" height="28" fill="#6b8a4e" rx="2" />
+            <circle cx="534" cy="402" r="16" fill="#7a9e5a" />
+            <circle cx="534" cy="395" r="11" fill="#8aad6a" />
+
+            <rect x="460" y="428" width="10" height="34" fill="#6b8a4e" rx="2" />
+            <circle cx="465" cy="420" r="20" fill="#7a9e5a" />
+            <circle cx="465" cy="412" r="13" fill="#8aad6a" />
+
+            {/* Trees — right side */}
+            <rect x="900" y="408" width="8" height="28" fill="#6b8a4e" rx="2" />
+            <circle cx="904" cy="402" r="16" fill="#7a9e5a" />
+            <circle cx="904" cy="395" r="11" fill="#8aad6a" />
+
+            <rect x="968" y="428" width="10" height="34" fill="#6b8a4e" rx="2" />
+            <circle cx="973" cy="420" r="20" fill="#7a9e5a" />
+            <circle cx="973" cy="412" r="13" fill="#8aad6a" />
+
+            {/* Milestone dots on road sides */}
+            <circle cx="648" cy="460" r="6" fill="#D79B98" opacity="0.9" />
+            <text x="630" y="450" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.75" fontFamily="Nunito,sans-serif" fontWeight="600">JC / Poly</text>
+
+            <circle cx="628" cy="550" r="6" fill="#D79B98" opacity="0.9" />
+            <text x="606" y="540" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.75" fontFamily="Nunito,sans-serif" fontWeight="600">Research</text>
+
+            <circle cx="792" cy="460" r="6" fill="#50A08C" opacity="0.9" />
+            <text x="812" y="450" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.75" fontFamily="Nunito,sans-serif" fontWeight="600">Decision</text>
+
+            <circle cx="812" cy="550" r="6" fill="#50A08C" opacity="0.9" />
+            <text x="836" y="540" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.75" fontFamily="Nunito,sans-serif" fontWeight="600">Uni Life</text>
+
           </svg>
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-24">
-          <p className="text-pink font-semibold tracking-widest text-xs uppercase mb-4">peer-to-peer · anonymous · honest</p>
-          <h1 className="font-bold text-navy text-5xl md:text-6xl leading-tight mb-3" style={{fontFamily:'Nunito,sans-serif'}}>
+        {/* Text — sits in sky portion, above horizon */}
+        <div className="relative z-10 max-w-3xl mx-auto px-4 text-center" style={{ paddingTop: '60px', paddingBottom: '20px' }}>
+          <p className="text-pink font-semibold tracking-widest text-xs uppercase mb-3">peer-to-peer · anonymous · honest</p>
+          <h1 className="font-bold text-navy text-5xl md:text-6xl leading-tight mb-2" style={{fontFamily:'Nunito,sans-serif'}}>
             your singapore uni path
           </h1>
-          <p className="text-navy font-semibold text-base mb-4 opacity-70">
+          <p className="text-navy font-semibold text-sm mb-4 opacity-60 tracking-wide">
             Connecting you to your path
           </p>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-            Anonymous interview-style articles from current university students — the candid perspective official sites don't give you.
+          <p className="text-navy text-sm max-w-xl mx-auto mb-6 leading-relaxed opacity-75">
+            Hello, welcome to upathsg — a website specially curated to address any questions you may have about your university path in Singapore! We hope to provide a one-stop university application website that is credible and accessible, with information on a wide range of schools and courses.
           </p>
           <Link href="#browse" className="inline-block bg-pink text-white font-semibold px-8 py-3 rounded-full hover:opacity-90 transition-opacity shadow-md">
             Browse Now
