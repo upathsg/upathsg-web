@@ -15,6 +15,8 @@ const categories = [
   { name: 'Law and Policy', slug: 'law-policy', emoji: '⚖️' },
 ];
 
+const sunRayAngles = [0,30,60,90,120,150,180,210,240,270,300,330];
+
 export default async function HomePage() {
   const [latestPosts, articleCount] = await Promise.all([
     getLatestPosts(3),
@@ -25,56 +27,43 @@ export default async function HomePage() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden" style={{ minHeight: '560px' }}>
-        {/* SVG Pathway Background */}
         <div className="absolute inset-0 w-full h-full">
           <svg viewBox="0 0 1440 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
             <defs>
-              {/* Sky gradient */}
               <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#fae8d8" />
                 <stop offset="60%" stopColor="#fdf4ee" />
                 <stop offset="100%" stopColor="#fff8f3" />
               </linearGradient>
-              {/* Horizon glow */}
               <radialGradient id="horizonGlow" cx="50%" cy="42%" r="25%">
                 <stop offset="0%" stopColor="#ffe8c0" stopOpacity="0.9" />
                 <stop offset="50%" stopColor="#ffd4a0" stopOpacity="0.4" />
                 <stop offset="100%" stopColor="#fae8d8" stopOpacity="0" />
               </radialGradient>
-              {/* Road gradient */}
               <linearGradient id="roadGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#c8bfb5" />
                 <stop offset="100%" stopColor="#b0a89e" />
               </linearGradient>
-              {/* Ground gradient left */}
               <linearGradient id="groundLeft" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stopColor="#c8d9b0" />
                 <stop offset="100%" stopColor="#d4e0bc" />
               </linearGradient>
-              {/* Ground gradient right */>
               <linearGradient id="groundRight" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stopColor="#d4e0bc" />
                 <stop offset="100%" stopColor="#c8d9b0" />
               </linearGradient>
-              {/* Text area overlay */}
               <radialGradient id="textOverlay" cx="50%" cy="45%" r="40%">
                 <stop offset="0%" stopColor="#fdf4ee" stopOpacity="0.75" />
                 <stop offset="100%" stopColor="#fdf4ee" stopOpacity="0" />
               </radialGradient>
             </defs>
 
-            {/* Sky */}
             <rect width="1440" height="560" fill="url(#skyGrad)" />
-
-            {/* Horizon glow (sun behind horizon) */}
             <ellipse cx="720" cy="235" rx="200" ry="80" fill="url(#horizonGlow)" />
-
-            {/* Sun */}
             <circle cx="720" cy="210" r="28" fill="#FFD166" opacity="0.85" />
             <circle cx="720" cy="210" r="20" fill="#FFE08A" opacity="0.9" />
 
-            {/* Sun rays */}
-            {[0,30,60,90,120,150,180,210,240,270,300,330].map((angle, i) => {
+            {sunRayAngles.map((angle, i) => {
               const rad = (angle * Math.PI) / 180;
               const x1 = 720 + Math.cos(rad) * 32;
               const y1 = 210 + Math.sin(rad) * 32;
@@ -83,49 +72,35 @@ export default async function HomePage() {
               return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#FFD166" strokeWidth="2" opacity="0.5" />;
             })}
 
-            {/* Rolling hills — left */}
             <path d="M0 300 Q180 220 360 280 Q500 330 580 310 L580 560 L0 560 Z" fill="url(#groundLeft)" opacity="0.7" />
             <path d="M0 340 Q150 290 300 320 Q420 345 580 330 L580 560 L0 560 Z" fill="#b8cca0" opacity="0.5" />
-
-            {/* Rolling hills — right */}
             <path d="M1440 300 Q1260 220 1080 280 Q940 330 860 310 L860 560 L1440 560 Z" fill="url(#groundRight)" opacity="0.7" />
             <path d="M1440 340 Q1290 290 1140 320 Q1020 345 860 330 L860 560 L1440 560 Z" fill="#b8cca0" opacity="0.5" />
 
-            {/* Road surface — perspective trapezoid */}
             <path d="M580 560 L680 235 L760 235 L860 560 Z" fill="url(#roadGrad)" />
-
-            {/* Road edge lines */}
             <path d="M580 560 L680 235" stroke="#e8e0d8" strokeWidth="2" opacity="0.8" />
             <path d="M860 560 L760 235" stroke="#e8e0d8" strokeWidth="2" opacity="0.8" />
 
-            {/* Road centre dashes */}
             <line x1="718" y1="245" x2="722" y2="265" stroke="white" strokeWidth="2.5" opacity="0.7" strokeLinecap="round" />
             <line x1="714" y1="285" x2="726" y2="320" stroke="white" strokeWidth="3" opacity="0.7" strokeLinecap="round" />
             <line x1="708" y1="340" x2="732" y2="390" stroke="white" strokeWidth="4" opacity="0.7" strokeLinecap="round" />
             <line x1="698" y1="415" x2="742" y2="480" stroke="white" strokeWidth="5" opacity="0.7" strokeLinecap="round" />
             <line x1="686" y1="500" x2="754" y2="545" stroke="white" strokeWidth="6" opacity="0.6" strokeLinecap="round" />
 
-            {/* Milestone markers — left side of road */}
             <circle cx="646" cy="360" r="7" fill="#D79B98" opacity="0.9" />
             <text x="628" y="348" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.7" fontFamily="Nunito,sans-serif">JC / Poly</text>
             <circle cx="623" cy="450" r="7" fill="#D79B98" opacity="0.9" />
             <text x="600" y="438" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.7" fontFamily="Nunito,sans-serif">Research</text>
-
-            {/* Milestone markers — right side of road */}
             <circle cx="794" cy="360" r="7" fill="#50A08C" opacity="0.9" />
             <text x="818" y="348" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.7" fontFamily="Nunito,sans-serif">Decision</text>
             <circle cx="817" cy="450" r="7" fill="#50A08C" opacity="0.9" />
             <text x="844" y="438" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.7" fontFamily="Nunito,sans-serif">Uni Life</text>
 
-            {/* Horizon line */}
             <line x1="0" y1="235" x2="1440" y2="235" stroke="#d4bfaa" strokeWidth="1" opacity="0.4" />
-
-            {/* Text area soft overlay so text is readable */}
             <rect width="1440" height="560" fill="url(#textOverlay)" />
           </svg>
         </div>
 
-        {/* Hero text — sits above SVG */}
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-24">
           <p className="text-pink font-semibold tracking-widest text-xs uppercase mb-4">peer-to-peer · anonymous · honest</p>
           <h1 className="font-bold text-navy text-5xl md:text-6xl leading-tight mb-3" style={{fontFamily:'Nunito,sans-serif'}}>
