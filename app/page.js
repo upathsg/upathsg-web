@@ -27,8 +27,6 @@ export default async function HomePage() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden" style={{ minHeight: '640px' }}>
-
-        {/* SVG Background — full bleed */}
         <div className="absolute inset-0 w-full h-full">
           <svg viewBox="0 0 1440 640" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
             <defs>
@@ -59,11 +57,9 @@ export default async function HomePage() {
               </linearGradient>
             </defs>
 
-            {/* Sky */}
             <rect width="1440" height="640" fill="url(#skyGrad)" />
             <rect width="1440" height="640" fill="url(#sunGlow)" />
 
-            {/* Sun */}
             <circle cx="720" cy="310" r="36" fill="#FFD166" opacity="0.9" />
             <circle cx="720" cy="310" r="24" fill="#FFE8A0" opacity="1" />
             {sunRayAngles.map((angle, i) => {
@@ -75,67 +71,45 @@ export default async function HomePage() {
               return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#FFD166" strokeWidth="2.5" opacity="0.55" />;
             })}
 
-            {/* Horizon line */}
             <line x1="0" y1="348" x2="1440" y2="348" stroke="#d4bfaa" strokeWidth="1" opacity="0.3" />
-
-            {/* Back hills (lightest) */}
             <path d="M0 348 Q200 290 400 330 Q600 365 720 340 Q840 315 1040 335 Q1240 355 1440 320 L1440 640 L0 640 Z" fill="url(#hill3)" />
-
-            {/* Mid hills */}
             <path d="M0 390 Q180 340 360 375 Q540 410 720 380 Q900 350 1080 378 Q1260 406 1440 370 L1440 640 L0 640 Z" fill="url(#hill2)" />
-
-            {/* Front hills */}
             <path d="M0 450 Q150 420 300 440 Q500 465 580 448 L580 640 L0 640 Z" fill="url(#hill1)" />
             <path d="M860 448 Q940 432 1100 452 Q1280 472 1440 440 L1440 640 L860 640 Z" fill="url(#hill1)" />
 
-            {/* Road — winding from bottom-center toward horizon */}
-            {/* Road shape: wide at bottom, narrows and curves to vanishing point at sun */}
             <path d="M580 640 C 600 560, 650 480, 700 348 L740 348 C 790 480, 840 560, 860 640 Z" fill="url(#roadGrad)" />
-
-            {/* Road kerb lines */}
             <path d="M580 640 C 600 560, 650 480, 700 348" stroke="#d8d0c8" strokeWidth="2" fill="none" opacity="0.7" />
             <path d="M860 640 C 840 560, 790 480, 740 348" stroke="#d8d0c8" strokeWidth="2" fill="none" opacity="0.7" />
 
-            {/* Road centre dashes */}
             <path d="M716 355 C 716 370, 716 385, 716 400" stroke="white" strokeWidth="3" strokeDasharray="8,10" fill="none" opacity="0.7" strokeLinecap="round" />
             <path d="M716 415 C 715 445, 714 475, 712 510" stroke="white" strokeWidth="4" strokeDasharray="10,12" fill="none" opacity="0.6" strokeLinecap="round" />
             <path d="M710 530 C 708 560, 706 590, 703 620" stroke="white" strokeWidth="5" strokeDasharray="12,14" fill="none" opacity="0.5" strokeLinecap="round" />
 
-            {/* Trees — left side */}
             <rect x="530" y="408" width="8" height="28" fill="#6b8a4e" rx="2" />
             <circle cx="534" cy="402" r="16" fill="#7a9e5a" />
             <circle cx="534" cy="395" r="11" fill="#8aad6a" />
-
             <rect x="460" y="428" width="10" height="34" fill="#6b8a4e" rx="2" />
             <circle cx="465" cy="420" r="20" fill="#7a9e5a" />
             <circle cx="465" cy="412" r="13" fill="#8aad6a" />
 
-            {/* Trees — right side */}
             <rect x="900" y="408" width="8" height="28" fill="#6b8a4e" rx="2" />
             <circle cx="904" cy="402" r="16" fill="#7a9e5a" />
             <circle cx="904" cy="395" r="11" fill="#8aad6a" />
-
             <rect x="968" y="428" width="10" height="34" fill="#6b8a4e" rx="2" />
             <circle cx="973" cy="420" r="20" fill="#7a9e5a" />
             <circle cx="973" cy="412" r="13" fill="#8aad6a" />
 
-            {/* Milestone dots on road sides */}
             <circle cx="648" cy="460" r="6" fill="#D79B98" opacity="0.9" />
             <text x="630" y="450" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.75" fontFamily="Nunito,sans-serif" fontWeight="600">JC / Poly</text>
-
             <circle cx="628" cy="550" r="6" fill="#D79B98" opacity="0.9" />
             <text x="606" y="540" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.75" fontFamily="Nunito,sans-serif" fontWeight="600">Research</text>
-
             <circle cx="792" cy="460" r="6" fill="#50A08C" opacity="0.9" />
             <text x="812" y="450" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.75" fontFamily="Nunito,sans-serif" fontWeight="600">Decision</text>
-
             <circle cx="812" cy="550" r="6" fill="#50A08C" opacity="0.9" />
             <text x="836" y="540" textAnchor="middle" fontSize="10" fill="#0F1932" opacity="0.75" fontFamily="Nunito,sans-serif" fontWeight="600">Uni Life</text>
-
           </svg>
         </div>
 
-        {/* Text — sits in sky portion, above horizon */}
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center" style={{ paddingTop: '60px', paddingBottom: '20px' }}>
           <p className="text-pink font-semibold tracking-widest text-xs uppercase mb-3">peer-to-peer · anonymous · honest</p>
           <h1 className="font-bold text-navy text-5xl md:text-6xl leading-tight mb-2" style={{fontFamily:'Nunito,sans-serif'}}>
@@ -190,10 +164,7 @@ export default async function HomePage() {
       {/* Fresh Takes */}
       <section className="bg-white py-16">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="font-bold text-navy text-3xl" style={{fontFamily:'Nunito,sans-serif'}}>Fresh Takes</h2>
-            <Link href="/articles" className="text-teal font-semibold text-sm hover:underline">View all →</Link>
-          </div>
+          <h2 className="font-bold text-navy text-3xl mb-8" style={{fontFamily:'Nunito,sans-serif'}}>Fresh Takes</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {latestPosts.map(post => <ArticleCard key={post.id} post={post} />)}
           </div>
