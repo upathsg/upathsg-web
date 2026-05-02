@@ -75,10 +75,10 @@ export default function AboutPage() {
                 border: 'border-navy',
                 titleColor: 'text-navy',
                 points: [
-                  'Always free to read — no sign-ups, no paywalls',
-                  'Priority is helping as many students as possible',
-                  'Community-driven, not institutional',
-                ],
+                'Help is always available',
+                'Community driven',
+                'Our priority is to help as many students as possible',
+],
               },
               {
                 title: 'Wide Range',
