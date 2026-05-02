@@ -9,10 +9,10 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto px-4 text-center">
           <p className="text-pink font-semibold tracking-widest text-xs uppercase mb-3">our story</p>
           <h1 className="font-bold text-navy text-4xl md:text-5xl mb-6" style={{fontFamily:'Nunito,sans-serif'}}>
-            We've been in your shoes.
+            We&apos;ve been in your shoes.
           </h1>
           <p className="text-navy text-base leading-relaxed opacity-80 max-w-2xl mx-auto">
-            Choosing a university course is one of the most stressful decisions you'll make — and somehow, the honest answers are always the hardest to find. We built upathsg to change that.
+            Choosing a university course is one of the most stressful decisions you&apos;ll make — and somehow, the honest answers are always the hardest to find. We built upathsg to change that.
           </p>
         </div>
       </section>
@@ -23,7 +23,7 @@ export default function AboutPage() {
           <h2 className="font-bold text-navy text-2xl mb-6" style={{fontFamily:'Nunito,sans-serif'}}>Our Story</h2>
           <div className="space-y-4 text-gray-600 leading-relaxed">
             <p>
-              upathsg started in 2020, created by a group of students who had just been through the university application process themselves. They knew how difficult it was to get honest, ground-level information about courses — the kind that doesn't come from brochures, open days, or university ambassadors.
+              upathsg started in 2020, created by a group of students who had just been through the university application process themselves. They knew how difficult it was to get honest, ground-level information about courses — the kind that doesn&apos;t come from brochures, open days, or university ambassadors.
             </p>
             <p>
               So they built what they wished had existed: a space where seniors could speak candidly about their experiences, and juniors could actually make sense of their options before committing.
@@ -66,7 +66,7 @@ export default function AboutPage() {
                 titleColor: 'text-pink',
                 points: [
                   'Anonymous sharing — seniors can be candid without consequences',
-                  'Concrete, practical advice from people who've lived it',
+                  'Concrete, practical advice from people who have lived it',
                   'Both pros and cons, honestly — not just the highlight reel',
                 ],
               },
