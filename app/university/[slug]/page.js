@@ -16,10 +16,13 @@ const UNIVERSITIES = {
 
 async function getPostsByUniversity(uniName) {
   const res = await fetch(
-    `${WP_API}/posts?per_page=50&_fields=id,title,slug,excerpt,date,categories&_embed=wp:term&search=${uniName}`
+    `${WP_API}/posts?per_page=100&_fields=id,title,slug,excerpt,date,categories&_embed=wp:term`
   );
   if (!res.ok) return [];
-  return res.json();
+  const all = await res.json();
+  return all.filter(post => 
+    post.title?.rendered?.toUpperCase().startsWith(uniName.toUpperCase())
+  );
 }
 
 export default async function UniversityPage({ params }) {
